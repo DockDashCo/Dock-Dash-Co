@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dock Dash Co. | Your Dockside Supply Line</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0a2540;
+      --ocean: #0077b6;
+      --aqua: #00b4d8;
+      --sand: #f8fafc;
+      --gold: #ffb703;
+      --text: #1e293b;
+      --muted: #64748b;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: var(--text);
+      background-color: var(--sand);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, .logo {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* Navigation */
+    header {
+      background-color: var(--navy);
+      color: var(--white);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
+
+    .nav-container {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--aqua);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.75rem;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--aqua);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-family: 'Montserrat', sans-serif;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.15s, background-color 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background-color: var(--gold);
+      color: var(--navy);
+    }
+
+    .btn-primary:hover {
+      background-color: #fca311;
+    }
+
+    .btn-secondary {
+      background-color: var(--ocean);
+      color: var(--white);
+    }
+
+    .btn-secondary:hover {
+      background-color: #023e8a;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, rgba(10, 37, 64, 0.92), rgba(0, 119, 182, 0.85)),
+                  url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color: var(--white);
+      padding: 6rem 1.5rem;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .tagline-pill {
+      display: inline-block;
+      background: rgba(0, 180, 216, 0.2);
+      border: 1px solid var(--aqua);
+      color: var(--aqua);
+      padding: 0.35rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: #e2e8f0;
+      margin-bottom: 2rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Section Defaults */
+    section {
+      padding: 4.5rem 1.5rem;
+    }
+
+    .container {
+      max-width: 1150px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 3rem;
+    }
+
+    .section-header h2 {
+      font-size: 2.1rem;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-header p {
+      color: var(--muted);
+    }
+
+    /* Services Grid */
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border-top: 4px solid var(--ocean);
+    }
+
+    .card-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      color: var(--navy);
+      margin-bottom: 0.6rem;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* How It Works */
+    .how-it-works {
+      background-color: var(--white);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+
+    .step {
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    .step-number {
+      width: 48px;
+      height: 48px;
+      background: var(--navy);
+      color: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      margin: 0 auto 1rem;
+    }
+
+    /* Pricing & Calculator */
+    .pricing-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .pricing-info {
+      background: var(--navy);
+      color: var(--white);
+      padding: 2.5rem;
+      border-radius: 12px;
+    }
+
+    .pricing-info h3 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      color: var(--aqua);
+    }
+
+    .price-highlight {
+      font-size: 2.2rem;
+      font-weight: 800;
+      font-family: 'Montserrat', sans-serif;
+      color: var(--gold);
+      margin: 1rem 0;
+    }
+
+    .pricing-info ul {
+      list-style: none;
+      margin-top: 1.25rem;
+    }
+
+    .pricing-info li {
+      margin-bottom: 0.65rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .pricing-info li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--aqua);
+      font-weight: bold;
+    }
+
+    .calculator-box {
+      background: var(--white);
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    }
+
+    .calculator-box h3 {
+      color: var(--navy);
+      margin-bottom: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      font-size: 0.9rem;
+    }
+
+    .form-group input[type="range"] {
+      width: 100%;
+      accent-color: var(--ocean);
+    }
+
+    .calc-result {
+      background: var(--sand);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .calc-total {
+      font-size: 1.5rem;
+      color: var(--ocean);
+    }
+
+    /* Loyalty Banner */
+    .loyalty {
+      background: linear-gradient(90deg, var(--ocean), var(--navy));
+      color: var(--white);
+      text-align: center;
+    }
+
+    .loyalty h2 {
+      font-size: 2.2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .loyalty p {
+      max-width: 650px;
+      margin: 0 auto 1.75rem;
+      font-size: 1.05rem;
+    }
+
+    /* Order / Signup Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 37, 64, 0.75);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .modal {
+      background: var(--white);
+      max-width: 480px;
+      width: 100%;
+      border-radius: 12px;
+      padding: 2rem;
+      position: relative;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1.25rem;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--muted);
+    }
+
+    .modal input, .modal select, .modal textarea {
+      width: 100%;
+      padding: 0.65rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-family: inherit;
+    }
+
+    /* Footer */
+    footer {
+      background: #061829;
+      color: #94a3b8;
+      padding: 3rem 1.5rem;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    footer strong {
+      color: var(--white);
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.2rem; }
+      .pricing-wrapper { grid-template-columns: 1fr; }
+      nav ul { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo">⚓ Dock Dash <span>Co.</span></a>
+      <nav>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#loyalty">Loyalty Club</a></li>
+          <li><button class="btn btn-primary" onclick="openModal('order')">Order Now</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="tagline-pill">Your Dockside Supply Line</div>
+      <h1>Your Delivery, Ducking Fast.</h1>
+      <p>Never leave the lake again. We deliver cold drinks, hot food, fuel, and watersport gear straight to your boat or dock—plus 24/7 emergency towing and jumpstarts.</p>
+      <div class="hero-buttons">
+        <button class="btn btn-primary" onclick="openModal('order')">Start a Lake Delivery</button>
+        <a href="#pricing" class="btn btn-secondary">Calculate Delivery Fee</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="container">
+      <div class="section-header">
+        <h2>Everything You Need on the Water</h2>
+        <p>Whether you're hosting a party on the boat or stranded with an empty tank, our land-to-lake relay brings supplies straight to you.</p>
+      </div>
+      <div class="grid-4">
+        <div class="card">
+          <div class="card-icon">🍔</div>
+          <h3>Food & Drinks</h3>
+          <p>Forgot snacks, ice, or lunch? Order from local favorites and we'll deliver straight to your boat or private dock.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">⛽</div>
+          <h3>On-Water Fuel</h3>
+          <p>Skip the high marina markups. We source fuel at local station prices and deliver right to your tank.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🏄</div>
+          <h3>Watersport Gear</h3>
+          <p>Buy or rent lifejackets, tow ropes, tubes, and wakeboards without drying off or heading back to shore.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🚤</div>
+          <h3>Towing & Jumpstarts</h3>
+          <p>Battery dead or engine stalled? Our rescue boats provide fast jumpstarts and safe towing back to your slip.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how-it-works" class="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <h2>The Always-Active Relay</h2>
+        <p>How we get your supplies from land to lake in record time.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Order Online</h3>
+          <p>Select your food, fuel, or gear rentals and drop your GPS pin, dock address, or landing location.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Land-to-Lake Relay</h3>
+          <p>Our drivers pick up your items on land and hand them off seamlessly to our waiting delivery boats.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Live GPS Tracking</h3>
+          <p>Track your delivery boat in real time with live ETA updates until we pull right up alongside you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing & Estimator -->
+  <section id="pricing">
+    <div class="container">
+      <div class="pricing-wrapper">
+        <div class="pricing-info">
+          <h3>Simple, Transparent Pricing</h3>
+          <p>We don't mark up store or gas station prices like marinas do. You pay retail cost for your items plus a straightforward delivery fee.</p>
+          <div class="price-highlight">$10 Base + $8 / mile</div>
+          <ul>
+            <li>No hidden marina fuel markups</li>
+            <li>Real-time GPS boat tracking included</li>
+            <li>Rent or buy watersport gear on demand</li>
+            <li>Emergency towing & jumpstarts available</li>
+          </ul>
+        </div>
+
+        <div class="calculator-box">
+          <h3>Delivery Fee Estimator</h3>
+          <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1.25rem;">Slide to estimate your delivery fee based on distance from our launch slip.</p>
+          
+          <div class="form-group">
+            <label for="milesInput">Distance on Water: <span id="milesDisplay" style="color: var(--ocean);">3</span> miles</label>
+            <input type="range" id="milesInput" min="1" max="15" value="3" oninput="updateEstimate()" />
+          </div>
+
+          <div class="form-group">
+            <label>
+              <input type="checkbox" id="firstOrderCheck" onchange="updateEstimate()" />
+              Apply Loyalty Member 50% Off First Delivery Promo
+            </label>
+          </div>
+
+          <div class="calc-result">
+            <span>Estimated Delivery Fee:</span>
+            <span class="calc-total" id="feeDisplay">$34.00</span>
+          </div>
+          <button class="btn btn-secondary" style="width: 100%; margin-top: 1.25rem;" onclick="openModal('order')">Lock In Delivery</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Loyalty Program -->
+  <section id="loyalty" class="loyalty">
+    <div class="container">
+      <h2>Join the Dock Dash Loyalty Club</h2>
+      <p>Earn points on every order toward free items, priority deliveries, and waived fees. Sign up today and get <strong>50% OFF your first delivery</strong> plus bonus points for referring friends!</p>
+      <button class="btn btn-primary" onclick="openModal('loyalty')">Claim 50% Off First Delivery</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p><strong>Dock Dash Co. ©</strong> — Your Dockside Supply Line</p>
+      <p style="margin-top: 0.5rem;">Serving lakefront communities, boaters, and watersport enthusiasts.</p>
+    </div>
+  </footer>
+
+  <!-- Interactive Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <button class="close-btn" onclick="closeModal()">&times;</button>
+      <h3 id="modalTitle" style="color: var(--navy); margin-bottom: 0.5rem;">Request On-Water Delivery</h3>
+      <p id="modalSubtitle" style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1.25rem;">Enter your details and we'll dispatch our nearest boat.</p>
+      
+      <form onsubmit="handleFormSubmit(event)">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" required placeholder="e.g., Chad Harington" />
+        </div>
+        <div class="form-group">
+          <label>Phone Number (for Live GPS Tracking Link)</label>
+          <input type="tel" required placeholder="(555) 234-5678" />
+        </div>
+        <div class="form-group" id="serviceField">
+          <label>What do you need?</label>
+          <select>
+            <option>Food & Cold Drinks</option>
+            <option>Fuel Delivery</option>
+            <option>Watersport Gear (Buy or Rent)</option>
+            <option>Emergency Towing / Jumpstart</option>
+          </select>
+        </div>
+        <div class="form-group" id="locationField">
+          <label>Dock Address or Lake Landmark</label>
+          <input type="text" placeholder="e.g., Harbor Ridge Dock #12 or North Cove" />
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;" id="modalSubmitBtn">Submit Request</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function updateEstimate() {
+      const miles = parseInt(document.getElementById('milesInput').value, 10);
+      const isFirstOrder = document.getElementById('firstOrderCheck').checked;
+      document.getElementById('milesDisplay').textContent = miles;
+
+      let total = 10 + (miles * 8);
+      if (isFirstOrder) {
+        total = total * 0.5;
+      }
+      document.getElementById('feeDisplay').textContent = '$' + total.toFixed(2);
+    }
+
+    function openModal(type) {
+      const overlay = document.getElementById('modalOverlay');
+      const title = document.getElementById('modalTitle');
+      const subtitle = document.getElementById('modalSubtitle');
+      const serviceField = document.getElementById('serviceField');
+      const locationField = document.getElementById('locationField');
+      const submitBtn = document.getElementById('modalSubmitBtn');
+
+      if (type === 'loyalty') {
+        title.textContent = 'Join the Dock Dash Loyalty Program';
+        subtitle.textContent = 'Sign up now to unlock 50% off your first delivery and earn points on every order.';
+        serviceField.style.display = 'none';
+        locationField.style.display = 'none';
+        submitBtn.textContent = 'Activate 50% Off Promo';
+      } else {
+        title.textContent = 'Request On-Water Delivery';
+        subtitle.textContent = 'Our car-to-boat relay will bring supplies straight to your location.';
+        serviceField.style.display = 'block';
+        locationField.style.display = 'block';
+        submitBtn.textContent = 'Dispatch Dock Dash Boat';
+      }
+
+      overlay.style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').style.display = 'none';
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      alert('Success! Welcome to Dock Dash Co. Check your phone for your tracking link and promo code.');
+      closeModal();
+    }
+  </script>
+</body>
+</html>
